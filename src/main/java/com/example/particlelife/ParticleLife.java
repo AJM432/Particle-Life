@@ -48,15 +48,14 @@ public class ParticleLife extends Application
 
 
         for(int i=0; i < Constants.numParticles; i++){
-            double x = rand.nextDouble(WIDTH);
-            double y = rand.nextDouble(HEIGHT);
+            double x = rand.nextDouble((WIDTH -100) - 100) + 100;
+            double y = rand.nextDouble((HEIGHT- 100) - 100) +100;
             //formula for random range = rand(max-min+1) + min
-            double vx = rand.nextInt(11) - 5;
-            double vy = rand.nextInt(11) - 5;
+//            double vx = rand.nextInt(11) - 5;
+//            double vy = rand.nextInt(11) - 5;
             int specie = rand.nextInt(Constants.colorList.length);
-            particles[i] = new Particle(x, y, vx, vy, specie);
-            particles[i].setFill(Constants.colorList[rand.nextInt(Constants.colorList.length)]);
-            // Generate random integers in range 0 to 999
+            particles[i] = new Particle(x, y, 0, 0, specie);
+            particles[i].setFill(Constants.colorList[specie]);
             root.getChildren().add(particles[i]);
         }
 
@@ -91,16 +90,16 @@ public class ParticleLife extends Application
                     double newY = a.getCenterY();
 
                     if(newX > WIDTH) {
-                        newX = Constants.particleSize;
+                        newX = Constants.phaseSize;
                     }
                     else if(newX < 0) {
-                        newX = WIDTH - Constants.particleSize;
+                        newX = WIDTH - Constants.phaseSize;
                     }
                     if(newY > HEIGHT) {
-                        newY = Constants.particleSize;
+                        newY = Constants.phaseSize;
                     }
                     else if(newY < 0) {
-                        newY = HEIGHT - Constants.particleSize;
+                        newY = HEIGHT - Constants.phaseSize;
                     }
                     a.setPosition(newX, newY);
                 }

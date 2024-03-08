@@ -32,7 +32,7 @@ public class Particle extends Circle {
         Point2D unitVector = p._position.subtract(_position);
         unitVector = unitVector.multiply(1/unitVector.magnitude());
         double force = forceFunction(normalizedDistance, attraction);
-        return unitVector.multiply(force*Constants.forceRange); //TODO: optimize by multiplying forceRange at very end :)
+        return unitVector.multiply(force);
     }
 
     public double forceFunction(double distance, double attraction){
@@ -82,6 +82,7 @@ public class Particle extends Circle {
     }
 
     public void update(double delta){
+        _acceleration = _acceleration.multiply(Constants.forceRange); //optimization that multiples by factoring sum multiplication
 
         double friction = Math.pow((1.0/2.0), delta/Constants.tHalf);
         _velocity = _velocity.multiply(friction);
