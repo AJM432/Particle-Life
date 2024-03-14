@@ -28,7 +28,7 @@ public class Particle extends Circle {
             return Point2D.ZERO;
         }
         double normalizedDistance = distance/Constants.forceRange;
-        double attraction = Constants.attractionMatrix[getSpecie()][p.getSpecie()];
+        double attraction = ParticleLife.attractionMatrix[getSpecie()][p.getSpecie()];
         Point2D unitVector = p._position.subtract(_position);
         unitVector = unitVector.multiply(1/unitVector.magnitude());
         double force = forceFunction(normalizedDistance, attraction);
@@ -72,6 +72,7 @@ public class Particle extends Circle {
     public double getVy(){
         return _velocity.getY();
     }
+    public Point2D getVelocity() {return _velocity;}
     public int getSpecie(){
         return _specie;
     }
@@ -81,7 +82,13 @@ public class Particle extends Circle {
         _acceleration = _acceleration.add(incrementalAcceleration);
     }
 
-    public void update(double delta){
+    public void update(double delta, Particle[] particles){
+        setAcceleration(0, 0);
+
+        for(int j=0; j < Constants.numParticles; j++){
+            Particle b = particles[j];
+            updateAcceleration(b);
+        }
         _acceleration = _acceleration.multiply(Constants.forceRange); //optimization that multiples by factoring sum multiplication
 
         double friction = Math.pow((1.0/2.0), delta/Constants.tHalf);
@@ -90,5 +97,25 @@ public class Particle extends Circle {
         _position = _position.add(_velocity.multiply(delta).add(_acceleration.multiply((1.0/2.0)*delta*delta)));
         setCenterX(_position.getX());
         setCenterY(_position.getY());
+
+
+
+        // border wrap
+        double newX = getCenterX();
+        double newY = getCenterY();
+
+        if(newX > Constants.WIDTH) {
+            newX = Constants.phaseSize;
+        }
+        else if(newX < 0) {
+            newX = Constants.WIDTH - Constants.phaseSize;
+        }
+        if(newY > Constants.HEIGHT) {
+            newY = Constants.phaseSize;
+        }
+        else if(newY < 0) {
+            newY = Constants.HEIGHT - Constants.phaseSize;
+        }
+        setPosition(newX, newY);
     }
 }
