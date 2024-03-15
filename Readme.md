@@ -10,22 +10,22 @@ Simulate complex life-like behaviour from simple rules!
 https://github.com/AJM432/Particle-Life/assets/49791407/a0ba73ab-2706-4021-b941-0f73b30c91bb
 
 ## Implementation
-1. We define a force function dependant on the distance between particles $r$ and the species of the two particles $i$ and $j$ defined by
+1. We define a force function dependent on the distance between particles $r$ and the species of the two particles $i$ and $j$ defined by
 
 $$
 f(r, i, j) = 
 \begin{cases} 
-      \frac{r}{\beta} - 1 & x\leq \beta \\
-      A_{ij}\cdot(1-|\frac{2r-1-\beta}{1-\beta}|) & \beta \leq x\leq 1 \\
+      \frac{r}{\beta} - 1 & r\leq \beta \\
+      A_{ij}\cdot(1-|\frac{2r-1-\beta}{1-\beta}|) & \beta \leq r\leq 1 \\
       0 & \text{otherwise}
    \end{cases}
 $$
 
-where $\beta=0.3$ and $A$ is an $N \times N$ matrix that defines the pairwise attraction multiplier between $N$ difference species.
+where $\beta=0.3$ and $A$ is an $N \times N$ matrix that defines the pairwise attraction multiplier between $N$ different species.
 
-2. However we only apply the force if the two particles are within a certain threshold distance $r < r_{forceRange}$. This causes localized behaviour leading to particles behaving in an interesting life-like manner.
+2. However, we only apply the force if the two particles are within a certain threshold distance $r < r_{forceRange}$. This causes localized behaviour leading to particles behaving in an interesting life-like manner.
 
-3. Next, we sum these forces using an n-body approach where the force exterted on a single particle $i$ is defined by
+3. Next, we sum these forces using an n-body approach where the force exerted on a single particle $i$ is defined by
 
 $$f_i = r_{forceRange}\cdot\sum_{j}\hat{r}\cdot f(\frac{r_{ij}}{r_{forceRange}}, i, j), \text{ as } f \text{ expects } r \in [0, 1]$$
 
@@ -37,7 +37,7 @@ $$d_t = d_{t-1} + v\Delta t + (\frac{1}{2})a\Delta t^2$$
 ## Features
 
 - View interactions between life-like particles in real-time
-- Interactive zoom controls to observe phenomema more closely
+- Interactive zoom controls to observe phenomena more closely
 - Tuneable parameters in a Java config file
 
 ## Usage/Examples
