@@ -66,13 +66,6 @@ public class Particle extends Circle {
     }
     
     // getters
-    public double getVx(){
-        return _velocity.getX();
-    }
-    public double getVy(){
-        return _velocity.getY();
-    }
-    public Point2D getVelocity() {return _velocity;}
     public int getSpecie(){
         return _specie;
     }
@@ -91,8 +84,9 @@ public class Particle extends Circle {
         }
         _acceleration = _acceleration.multiply(Constants.forceRange); //optimization that multiples by factoring sum multiplication
 
-        double friction = Math.pow((1.0/2.0), delta/Constants.tHalf);
+        double friction = Math.pow((1.0/10.0), delta/Constants.tHalf);
         _velocity = _velocity.multiply(friction);
+        _acceleration = _acceleration.multiply(friction*2);
         _velocity = _velocity.add(_acceleration.multiply(delta));
         _position = _position.add(_velocity.multiply(delta).add(_acceleration.multiply((1.0/2.0)*delta*delta)));
         setCenterX(_position.getX());
