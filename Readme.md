@@ -6,6 +6,8 @@
 
 Simulate complex life-like behaviour from simple rules!
 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![](https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white)
+
 ## Demo
 https://github.com/AJM432/Particle-Life/assets/49791407/a0ba73ab-2706-4021-b941-0f73b30c91bb
 
