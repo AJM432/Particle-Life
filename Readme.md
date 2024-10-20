@@ -1,5 +1,5 @@
 <div align="center">
-<img style="border-radius: 10px" width="250" height="250" src="https://github.com/AJM432/Particle-Life/assets/49791407/0324f431-ed9c-4794-a94c-50ce7c7dcd51">
+<img style="border-radius: 10px" width="400" height="400" src="https://github.com/user-attachments/assets/e29b3449-b2be-4613-ab47-3cbe8f202f7e">
 </div>
 
 # Particle Life
